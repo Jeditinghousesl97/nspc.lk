@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>NSPC | Coming Soon</title>
+  <meta name="description" content="NSPC - Accounting, Auditing & Tax Consultancy Service. Our website is coming soon." />
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #28359b;
+      --secondary: #139ec2;
+      --dark: #202332;
+      --text: #5f6472;
+      --light: #f7f8ef;
+      --white: #ffffff;
+      --border: rgba(40, 53, 155, 0.14);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      min-height: 100vh;
+      color: var(--dark);
+      background:
+        radial-gradient(circle at top left, rgba(19, 158, 194, 0.12), transparent 32%),
+        linear-gradient(135deg, #fbfcf4 0%, #eef2f6 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1180px;
+      min-height: 680px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      backdrop-filter: blur(14px);
+    }
+
+    .content {
+      padding: 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .logo-wrap {
+      width: 150px;
+      height: 150px;
+      background: var(--light);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 34px;
+    }
+
+    .logo-wrap img {
+      width: 118px;
+      height: auto;
+      display: block;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      color: var(--secondary);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow span {
+      width: 8px;
+      height: 8px;
+      background: var(--secondary);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: 0.96;
+      letter-spacing: -0.055em;
+      color: var(--dark);
+      margin-bottom: 22px;
+      max-width: 720px;
+    }
+
+    h1 strong {
+      color: var(--primary);
+    }
+
+    .description {
+      font-size: 18px;
+      line-height: 1.75;
+      color: var(--text);
+      max-width: 640px;
+      margin-bottom: 34px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 38px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: #202a7d;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--primary);
+      background: rgba(255, 255, 255, 0.58);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--secondary);
+      color: var(--secondary);
+      transform: translateY(-2px);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 720px;
+    }
+
+    .info-card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.62);
+    }
+
+    .info-card i {
+      color: var(--secondary);
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .info-card h3 {
+      font-size: 14px;
+      margin-bottom: 7px;
+      color: var(--dark);
+    }
+
+    .info-card p,
+    .info-card a {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .visual {
+      background:
+        linear-gradient(145deg, rgba(40, 53, 155, 0.93), rgba(19, 158, 194, 0.88)),
+        url("background.jpg") center/cover;
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .visual::before {
+      content: "";
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 50%;
+      top: -120px;
+      right: -120px;
+    }
+
+    .visual::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 50%;
+      bottom: -90px;
+      left: -90px;
+    }
+
+    .visual-inner {
+      position: relative;
+      z-index: 2;
+      color: var(--white);
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 44px;
+    }
+
+    .pulse {
+      width: 9px;
+      height: 9px;
+      background: #ffffff;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .pulse::after {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      animation: pulse 1.6s infinite;
+    }
+
+    @keyframes pulse {
+      from {
+        transform: scale(0.6);
+        opacity: 1;
+      }
+
+      to {
+        transform: scale(1.7);
+        opacity: 0;
+      }
+    }
+
+    .service-box {
+      margin-top: auto;
+    }
+
+    .service-box h2 {
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      margin-bottom: 18px;
+    }
+
+    .service-box p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.84);
+      max-width: 460px;
+    }
+
+    .service-list {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.11);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .service-item i {
+      width: 20px;
+      text-align: center;
+    }
+
+    footer {
+      margin-top: 34px;
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    @media (max-width: 920px) {
+      body {
+        padding: 14px;
+        align-items: flex-start;
+      }
+
+      .page {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        border-radius: 22px;
+      }
+
+      .content {
+        padding: 36px 24px;
+        text-align: center;
+        align-items: center;
+      }
+
+      .logo-wrap {
+        width: 124px;
+        height: 124px;
+        border-radius: 20px;
+        margin-bottom: 26px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .logo-wrap img {
+        width: 98px;
+      }
+
+      .eyebrow {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .description {
+        font-size: 16px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .actions {
+        justify-content: center;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+        width: 100%;
+      }
+
+      .info-card {
+        text-align: center;
+      }
+
+      .visual {
+        padding: 34px 24px;
+        min-height: 430px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      body {
+        padding: 10px;
+      }
+
+      .content {
+        padding: 30px 18px;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .visual {
+        padding: 30px 18px;
+      }
+
+      .service-item {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <section class="content">
+      <div class="logo-wrap">
+        <img src="Logo.jpg" alt="NSPC Logo">
+      </div>
+
+      <div class="eyebrow">
+        <span></span>
+        Website Launching Soon
+      </div>
+
+      <h1>
+        Professional <strong>Accounting</strong>, Auditing & Tax Consultancy
+      </h1>
+
+      <p class="description">
+        Our new website is currently under development. NSPC provides reliable accounting,
+        auditing and tax consultancy services with professional guidance for individuals,
+        businesses and organisations.
+      </p>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="tel:+94710862682">
+          <i class="fa-solid fa-phone"></i>
+          Call Us
+        </a>
+
+        <a class="btn btn-outline" href="mailto:nspereracom@gmail.com">
+          <i class="fa-solid fa-envelope"></i>
+          Send Email
+        </a>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <i class="fa-solid fa-location-dot"></i>
+          <h3>Office Address</h3>
+          <p>No. 6/3, Polhena, Madapatha, Piliyandala, Sri Lanka.</p>
+        </div>
+
+        <div class="info-card">
+          <i class="fa-solid fa-headset"></i>
+          <h3>Contact Numbers</h3>
+          <p>
+            <a href="tel:+94114200678">+94 114 200 678</a><br>
+            <a href="tel:+94710862682">+94 710 862 682</a><br>
+            <a href="tel:+94742902682">+94 742 902 682</a>
+          </p>
+        </div>
+      </div>
+
+      <footer>
+        © <span id="year"></span> NSPC. All Rights Reserved.
+      </footer>
+    </section>
+
+    <section class="visual">
+      <div class="visual-inner">
+        <div class="status">
+          <span class="pulse"></span>
+          Coming Soon
+        </div>
+
+        <div class="service-box">
+          <h2>Trusted financial support for your business growth.</h2>
+          <p>
+            Chartered tax consultancy, accounting and auditing services delivered with clarity,
+            accuracy and professionalism.
+          </p>
+        </div>
+
+        <div class="service-list">
+          <div class="service-item">
+            <i class="fa-solid fa-calculator"></i>
+            Accounting Services
+          </div>
+
+          <div class="service-item">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+            Tax Consultancy
+          </div>
+
+          <div class="service-item">
+            <i class="fa-solid fa-chart-line"></i>
+            Auditing Support
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
