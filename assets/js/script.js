@@ -38,13 +38,47 @@ const feedbackSlider = document.querySelector('[data-feedback-slider]');
 
 if (feedbackSlider) {
   const cards = Array.from(feedbackSlider.querySelectorAll('.feedback-card'));
-  const dots = Array.from(feedbackSlider.querySelectorAll('.slider-dot'));
+  const controls = feedbackSlider.querySelector('.slider-controls');
+  const prevButton = feedbackSlider.querySelector('[data-slider-prev]');
+  const nextButton = feedbackSlider.querySelector('[data-slider-next]');
+  let dots = [];
   let activeIndex = 0;
+  let pageSize = 3;
+  let totalPages = 0;
   let autoRotate;
 
+  const getPageSize = () => {
+    if (window.innerWidth <= 520) return 1;
+    if (window.innerWidth <= 900) return 2;
+    return 3;
+  };
+
+  const buildDots = () => {
+    controls.innerHTML = '';
+    totalPages = Math.ceil(cards.length / pageSize);
+
+    for (let index = 0; index < totalPages; index += 1) {
+      const dot = document.createElement('button');
+      dot.className = 'slider-dot';
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Show review group ${index + 1}`);
+      dot.addEventListener('click', () => {
+        stopAutoRotate();
+        setActiveSlide(index);
+        startAutoRotate();
+      });
+      controls.appendChild(dot);
+    }
+
+    dots = Array.from(controls.querySelectorAll('.slider-dot'));
+  };
+
   const setActiveSlide = (index) => {
+    const start = index * pageSize;
+    const end = start + pageSize;
+
     cards.forEach((card, cardIndex) => {
-      card.classList.toggle('is-active', cardIndex === index);
+      card.classList.toggle('is-active', cardIndex >= start && cardIndex < end);
     });
 
     dots.forEach((dot, dotIndex) => {
@@ -55,8 +89,9 @@ if (feedbackSlider) {
   };
 
   const startAutoRotate = () => {
+    stopAutoRotate();
     autoRotate = window.setInterval(() => {
-      const nextIndex = (activeIndex + 1) % cards.length;
+      const nextIndex = (activeIndex + 1) % totalPages;
       setActiveSlide(nextIndex);
     }, 4500);
   };
@@ -65,19 +100,43 @@ if (feedbackSlider) {
     window.clearInterval(autoRotate);
   };
 
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      stopAutoRotate();
-      setActiveSlide(index);
+  const goToPrevious = () => {
+    const previousIndex = (activeIndex - 1 + totalPages) % totalPages;
+    setActiveSlide(previousIndex);
+  };
+
+  const goToNext = () => {
+    const nextIndex = (activeIndex + 1) % totalPages;
+    setActiveSlide(nextIndex);
+  };
+
+  const syncSliderLayout = () => {
+    const nextPageSize = getPageSize();
+
+    if (nextPageSize !== pageSize || dots.length === 0) {
+      pageSize = nextPageSize;
+      buildDots();
+      activeIndex = Math.min(activeIndex, totalPages - 1);
+      setActiveSlide(Math.max(activeIndex, 0));
       startAutoRotate();
-    });
-  });
+    }
+  };
 
   feedbackSlider.addEventListener('mouseenter', stopAutoRotate);
   feedbackSlider.addEventListener('mouseleave', startAutoRotate);
+  prevButton?.addEventListener('click', () => {
+    stopAutoRotate();
+    goToPrevious();
+    startAutoRotate();
+  });
+  nextButton?.addEventListener('click', () => {
+    stopAutoRotate();
+    goToNext();
+    startAutoRotate();
+  });
+  window.addEventListener('resize', syncSliderLayout);
 
-  setActiveSlide(0);
-  startAutoRotate();
+  syncSliderLayout();
 }
 
 const form = document.querySelector('#contactForm');
